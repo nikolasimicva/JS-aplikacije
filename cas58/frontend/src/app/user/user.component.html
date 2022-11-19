@@ -1,0 +1,83 @@
+<h2>Moje narudzbine</h2>
+
+<div *ngIf='myorders.length!=0'>
+    <table>
+        <tr>
+            <th>Naziv</th>
+            <th>Kolicina</th>
+            <th>Status</th>
+            <th>Akcija</th>
+        </tr>
+        <tr *ngFor='let o of myorders'>
+            <td>{{o.knjiga}}</td>
+            <td>{{o.kolicina}}</td>
+            <td>{{o.status}}</td>
+            <td>
+                <button (click)='cancelOrder(o)'>Cancel</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div *ngIf='myorders.length==0'>
+    Nema narudzbina
+</div>
+
+<h2>Moje knjige</h2>
+
+<div *ngIf='books.length!=0; else error'>
+    <table>
+        <tr>
+            <th>Naziv</th>
+            <th>Broj strana</th>
+        </tr>
+        <tr *ngFor='let b of books'>
+            <td>{{b.naziv}}</td>
+            <td>{{b.strane}}</td>
+        </tr>
+    </table>
+</div>
+<ng-template #error>
+    <h3>Nazalost nema knjiga za ovog korisnika</h3>
+</ng-template>
+
+<button (click)='dodajKnjigu()'>Dodaj novu knjigu</button>
+
+<h2>Pretraga knjiga</h2>
+
+<input type='text' name='search' [(ngModel)]='searchParam'>
+<button (click)='trazi()'>Search</button>
+
+<div *ngIf='searchBooks.length!=0'>
+    <table>
+        <tr>
+            <th>Naziv</th>
+            <th>Strane</th>
+            <th>Komentari</th>
+            <th>Akcija</th>
+        </tr>
+        <tr *ngFor='let b of searchBooks'>
+            <td>{{b.naziv}}</td>
+            <td>{{b.strane}}</td>
+            <td>
+                <ul>
+                    <li *ngFor='let comm of b.komentari'>{{comm.tekst}}</li>
+                </ul>
+            </td>
+            <td>
+               
+                <button *ngIf='b.pisac!=user.korisnicko_ime' 
+                (click)='dodaj(b)'>
+                    Dodaj komentar</button>
+                <button *ngIf='b.pisac!=user.korisnicko_ime' 
+                (click)='naruci(b)'>
+                    Naruci</button>
+               
+                
+            </td>
+        </tr>
+    </table>
+</div>
+<div *ngIf='searchBooks.length==0 && searchActivated'>
+    Nema trazenih knjiga
+</div>
+

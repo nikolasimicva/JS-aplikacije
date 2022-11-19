@@ -1,0 +1,34 @@
+<app-menu></app-menu>
+
+<mat-card style="margin-top: 10px">
+    <mat-horizontal-stepper #stepper>
+        <mat-step [stepControl]="municipalityForm">
+            <form [formGroup]="municipalityForm">
+                <ng-template matStepLabel>Zip code</ng-template>
+
+                <mat-form-field>
+                    <mat-label>City</mat-label>
+                    <input matInput placeholder="City" formControlName="city">
+                </mat-form-field> &nbsp;&nbsp;
+
+                <mat-form-field>
+                    <mat-label>Zip</mat-label>
+                    <input matInput placeholder="Zip" formControlName="zip">
+                </mat-form-field>
+
+                <div>
+                    <button mat-button matStepperNext>Next</button>
+                </div>
+            </form>
+        </mat-step>
+
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <p>You are now done.</p>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</mat-card>
