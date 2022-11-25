@@ -12,7 +12,6 @@ export class TableUtil {
                 <head>
                     <title>Print</title>
                 </head>
-
                 <body onload="window.print(); window.close()">
                     <table>${printContent}</table>
                 </body>
