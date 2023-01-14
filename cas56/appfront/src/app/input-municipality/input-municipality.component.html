@@ -3,7 +3,7 @@
 <mat-card style="margin-top: 10px">
 
     <mat-horizontal-stepper #stepper>
-        
+
         <mat-step [stepControl]="municipalityForm">
             <form [formGroup]="municipalityForm">
                 <ng-template matStepLabel>Zip code</ng-template>
@@ -19,6 +19,7 @@
                     <button mat-button matStepperNext>Next</button>
                 </div>
             </form>
+            
         </mat-step>
         <mat-step>
            <ng-template matStepLabel>Done</ng-template>
